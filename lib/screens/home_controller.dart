@@ -6,7 +6,7 @@ class HomeController extends ChangeNotifier {
   // left, right, top, down
   List<bool> isDoorLockList = [false, false, false, false];
 
-  void onTabChange(int index) {
+  void onBottomNavigationTabChange(int index) {
     selectedTabIndex = index;
     notifyListeners();
   }
