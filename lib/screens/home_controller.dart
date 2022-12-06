@@ -18,7 +18,9 @@ class HomeController extends ChangeNotifier {
 
   bool isCoolSelected = true;
   int coolTemp = 18, heatTemp = 24;
+
   int get currentTemp => isCoolSelected ? coolTemp : heatTemp;
+
   void updateCoolSelectedTab(bool isCoolBtn) {
     if (isCoolBtn)
       isCoolSelected = true;
@@ -34,5 +36,33 @@ class HomeController extends ChangeNotifier {
       heatTemp += value;
     }
     notifyListeners();
+  }
+
+  bool isShowTyre = false;
+
+  Future<void> showTyreController(int index) async {
+    if (selectedTabIndex != 3 && index == 3) {
+      await Future.delayed(Duration(milliseconds: 400));
+      if (selectedTabIndex == 3) {
+        isShowTyre = true;
+        notifyListeners();
+      }
+    } else {
+      isShowTyre = false;
+      notifyListeners();
+    }
+  }
+
+  bool isShowTyreStatus = false;
+
+  Future<void> tyreStatusController(int index) async {
+    if (selectedTabIndex != 3 && index == 3) {
+      isShowTyreStatus = true;
+      notifyListeners();
+    } else {
+      await Future.delayed(Duration(milliseconds: 600));
+      isShowTyreStatus = false;
+      notifyListeners();
+    }
   }
 }
